@@ -3,20 +3,27 @@ const canvas = d3.select(".canva");
 var dataArray = [4, 15, 34];
 
 // add an svg element
-const svg = canvas.append("svg").attr("width", 600).attr("height", 600);
+// const svg = canvas.append("svg").attr("width", 600).attr("height", 600);
 
-const rect = svg.append("rect");
+const svg = canvas.select("svg");
+
+// const rect = svg.append("rect");
+const rect = svg.selectAll("rect");
 
 rect
   .attr("width", 24)
   .data(dataArray)
   .attr("fill", "orange")
-  .attr("height", 100)
-  .attr("y", function (d, i) {
-    console.log(i)
-    return d * 12;
+  .attr("height", function (d) {
+    return d * 3;
   })
+
   .attr("x", function (d, i) {
     console.log(d);
-    return d * 20;
+    return i * 25;
+  })
+  .attr("y", function (d, i) {
+    return 100 - d * 3;
   });
+
+console.log(rect);
